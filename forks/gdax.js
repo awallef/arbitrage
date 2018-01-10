@@ -1,13 +1,12 @@
-const Gdax = require('gdax')
-const publicClient = new Gdax.PublicClient()
+//const Gdax = require('gdax'),
+//publicClient = new Gdax.PublicClient()
+//publicClient.getProducts().then(data => process.send(data)).catch(error => process.send(error));
 
-// go...
-/*
-publicClient.getProducts((error, response, data) => {
-  if (error) return process.send(error)
 
-  process.send(data)
+// Importing Node modules and initializing Express
+const { Jim } = require('askjim-node'),
+{ GdaxService } = require('../src/services/marketPlace/GdaxService.js')
+jim = new Jim(process)
 
-});
-*/
-publicClient.getProducts().then(data => process.send(data)).catch(error => process.send(error));
+jim.askParent('hello');
+jim.registerService( new GdaxService() )
