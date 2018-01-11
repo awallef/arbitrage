@@ -2,16 +2,19 @@
 const config = require('./config/main'),
 express = require('express'),
 { Jim } = require('askjim-node'),
+{ PricesService } = require('./src/services/marketPlace/PricesService'),
+{ TradeService } = require('./src/services/marketPlace/TradeService'),
 app = express(),
 jim = new Jim()
 
 jim.log('hey')
 jim.register('Model','User',require('./src/models/user'))
-
+jim.registerService( new PricesService() )
 jim.registerFork('gdax', './forks/gdax.js');
 
 
-
+//give first order
+jim.ask(TradeService.GET_PRODUCTS)
 
 // express IO
 app.get('/', (req, res) => {

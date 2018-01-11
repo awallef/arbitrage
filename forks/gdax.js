@@ -8,5 +8,4 @@ const { Jim } = require('askjim-node'),
 { GdaxService } = require('../src/services/marketPlace/GdaxService.js')
 jim = new Jim(process)
 
-jim.askParent('hello');
 jim.registerService( new GdaxService() )
