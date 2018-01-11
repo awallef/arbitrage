@@ -10,11 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "askjim-node": "0.0.3",
+    "askjim-node": "0.0.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
-    "gdax": "^0.4.2",
+    "gdax": "^0.5.1",
     "jsonwebtoken": "^5.7.0",
     "moment": "^2.13.0",
     "morgan": "^1.7.0",

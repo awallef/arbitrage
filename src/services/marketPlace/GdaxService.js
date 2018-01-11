@@ -6,11 +6,17 @@ Gdax = require('gdax')
 class GdaxService extends TradeService {
 
   static get NAME() { return 'GdaxService' }
+  static get READY() { return 'Gdax.READY' }
 
   constructor(serviceName)
   {
     super(serviceName)
     this.publicClient = new Gdax.PublicClient()
+  }
+
+  onRegister()
+  {
+    this.jim.askParent(GdaxService.READY);
   }
 
   handleInstruction(instruction)
@@ -19,7 +25,7 @@ class GdaxService extends TradeService {
     {
       case TradeService.GET_PRODUCTS:
         this.publicClient.getProducts()
-        .then(data => this.askParent(TradeService.PRODUCTS_FETCHED, { data, fork: GdaxService.NAME }))
+        .then(data => this.jim.askParent(TradeService.PRODUCTS_FETCHED, { data, fork: GdaxService.NAME }))
         .catch(error => console.log(error))
         break
     }

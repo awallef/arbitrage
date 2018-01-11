@@ -1,7 +1,8 @@
 'use strict'
 
 const {Service} = require('askjim-node'),
-{ TradeService } = require('./TradeService')
+{ TradeService } = require('./TradeService'),
+{ GdaxService } = require('./GdaxService')
 
 class PricesService extends Service {
 
@@ -10,7 +11,8 @@ class PricesService extends Service {
   listInstructionInterests()
   {
     return [
-      TradeService.PRODUCTS_FETCHED
+      TradeService.PRODUCTS_FETCHED,
+      GdaxService.READY
     ]
   }
 
@@ -18,8 +20,10 @@ class PricesService extends Service {
   {
     switch(instruction.name)
     {
+      case GdaxService.READY:
+        this.jim.askFork('gdax',TradeService.GET_PRODUCTS)
+        break
       case TradeService.PRODUCTS_FETCHED:
-        this.publicClient.getProducts()
         console.log(instruction.body);
         break
     }

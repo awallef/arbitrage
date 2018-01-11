@@ -10,7 +10,9 @@ class TradeService extends Service {
 
   listInstructionInterests()
   {
-    return []
+    return [
+      TradeService.GET_PRODUCTS
+    ]
   }
 }
 
